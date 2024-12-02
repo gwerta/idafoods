@@ -4,18 +4,16 @@ public class Alimentos {
     private int alimentos_id;
     private String nome;
     private int calorias;
-    private String foto;
     private int sabor;
     private int saciedade;
 
     public Alimentos(){
     }
 
-    public Alimentos(int alimentos_id, String nome, int calorias, String foto, int sabor, int saciedade){
+    public Alimentos(int alimentos_id, String nome, int calorias, int sabor, int saciedade){
         this.alimentos_id = alimentos_id;
         this.nome = nome;
         this.calorias = calorias;
-        this.foto = foto;
         this.sabor = sabor;
         this.saciedade = saciedade;
     }
@@ -29,8 +27,7 @@ public class Alimentos {
     public int getCalorias(){
         return calorias;
     }
-    public String getFoto(){
-        return foto;
+
     }
     public int getSabor(){
         return sabor;
@@ -45,9 +42,6 @@ public class Alimentos {
     public void setCalorias(int calorias){
         this.calorias = calorias;
     }
-    public void setFoto(String foto){
-        this.foto = foto;
-    }
     public void setSabor(int sabor){
         this.sabor = sabor;
     }
@@ -57,6 +51,6 @@ public class Alimentos {
 
     @Override
     public String toString(){
-        return "Alimentos [alimentos_id=" + alimentos_id + ",nome=" + nome + ", calorias=" + calorias + ",foto=" + foto + ",sabor=" + sabor + ",saciedade=" + saciedade + "]";
+        return "Alimentos [alimentos_id=" + alimentos_id + ",nome=" + nome + ", calorias=" + calorias + ",sabor=" + sabor + ",saciedade=" + saciedade + "]";
     }
 }
