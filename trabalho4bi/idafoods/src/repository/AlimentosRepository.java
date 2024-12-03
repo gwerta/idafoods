@@ -153,7 +153,7 @@ public class AlimentosRepository {
 
 
     public void adicionarAlimento(Alimentos novoAlimentos) {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'adicionarAlimento'");
     }
 }
