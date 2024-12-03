@@ -31,7 +31,7 @@ public class Alimentos {
     public int getSabor(){
         return sabor;
     }
-    public int saciedade(){
+    public int getSaciedade(){
         return saciedade;
     }
 

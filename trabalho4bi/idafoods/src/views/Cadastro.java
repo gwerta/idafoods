@@ -3,22 +3,31 @@ import java.awt.*;
 import javax.swing.*;
 
 
+
 public class Cadastro extends JFrame {
 
-    private JButton jButton_Todos, jButton_Leves, jButton_Salvar, jButton_Caloricos;
+    private JButton jButton_Todos, jButton_Salvar;
     private JPanel buttonJPanel, radioJPanel, eastJPanel, westJPanel, centralJPanel, generalJPanel;
     private JRadioButton radio1, radio2, radio3;
     private ButtonGroup radioGroup;
-    private JLabel nome, saciedade, calorias, sabor, alimento;
+    private JLabel nome, saciedade, calorias, sabor;
     private JTextField tnome, tcalorias;
     private JComboBox nota;
+    private boolean isEditMode;
+   
   
+    
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
+
+  
     
     public Cadastro() {
         super("Cadastro");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
+   
 
         Container janela = getContentPane();
         janela.setLayout(new BorderLayout());
@@ -84,8 +93,6 @@ public class Cadastro extends JFrame {
 
         // Inicializando botões
         jButton_Todos = new JButton("Todos");
-        jButton_Caloricos = new JButton("Caloricos");
-        jButton_Leves = new JButton("Leves");
         jButton_Salvar = new JButton("Salvar");
 
         // Inicializando painel de botões com todos os botões combinados
@@ -94,15 +101,7 @@ public class Cadastro extends JFrame {
 
         JPanel buttonGroup1 = new JPanel(new FlowLayout());
         buttonGroup1.add(jButton_Todos);
-        buttonGroup1.add(jButton_Caloricos);
-        buttonGroup1.add(jButton_Leves);
-
-        JPanel buttonGroup2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonGroup2.add(jButton_Salvar);
-
-        // Adicionando os dois grupos de botões ao painel principal de botões
-        buttonJPanel.add(buttonGroup1);
-        buttonJPanel.add(buttonGroup2);
+        buttonGroup1.add(jButton_Salvar);
 
         // Inicializando painel central
         centralJPanel = new JPanel();
@@ -114,14 +113,15 @@ public class Cadastro extends JFrame {
         generalJPanel = new JPanel();
         generalJPanel.setLayout(new BorderLayout());
         generalJPanel.add(centralJPanel, BorderLayout.CENTER);
-        generalJPanel.add(buttonJPanel, BorderLayout.SOUTH);
+        generalJPanel.add(buttonGroup1, BorderLayout.SOUTH);
 
         // Adicionando painel geral ao JFrame
         janela.add(generalJPanel, BorderLayout.CENTER);
 
-        
+
     }
+}
+    
 
    
-}
 

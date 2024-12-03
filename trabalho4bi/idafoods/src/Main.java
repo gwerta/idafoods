@@ -1,11 +1,11 @@
-import views.Cadastro;
+import controllers.AlimentosController;
+
 
 public class Main {
-    Cadastro teste = new Cadastro();
-    public static void main(String[] args) {
-        Cadastro teste = new Cadastro();
-        
-        teste.setVisible(true);
-        teste.setSize(400, 240);
+   
+    public static void main(String[] args) throws Exception {
+       
+        AlimentosController controller = new AlimentosController();
+        controller.iniciar();
     }
 }
