@@ -5,12 +5,12 @@ public class Alimentos {
     private String nome;
     private int calorias;
     private int sabor;
-    private int saciedade;
+    private String saciedade;
 
     public Alimentos(){
     }
 
-    public Alimentos(int alimentos_id, String nome, int calorias, int sabor, int saciedade){
+    public Alimentos(int alimentos_id, String nome, int calorias, int sabor, String saciedade){
         this.alimentos_id = alimentos_id;
         this.nome = nome;
         this.calorias = calorias;
@@ -31,7 +31,7 @@ public class Alimentos {
     public int getSabor(){
         return sabor;
     }
-    public int getSaciedade(){
+    public String getSaciedade(){
         return saciedade;
     }
 
@@ -44,7 +44,7 @@ public class Alimentos {
     public void setSabor(int sabor){
         this.sabor = sabor;
     }
-    public void setSaciedade(int saciedade){
+    public void setSaciedade(String saciedade){
         this.saciedade = saciedade;
     }
 

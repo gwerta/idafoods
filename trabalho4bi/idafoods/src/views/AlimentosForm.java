@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class AlimentosForm extends JDialog {
     private JPanel radioJPanel;
     private JTextField tnome, tcalorias;
+    @SuppressWarnings("rawtypes")
     private JComboBox nota;
     private JRadioButton radio1, radio2, radio3;
     private ButtonGroup radioGroup;
@@ -34,6 +35,7 @@ public class AlimentosForm extends JDialog {
         preencherCampos();
     }
     
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private void initializeComponents() { 
         tnome = new JTextField(20);
         tcalorias = new JTextField(20);
@@ -71,7 +73,7 @@ public class AlimentosForm extends JDialog {
         salvarButton = new JButton("Salvar");
         cancelarButton = new JButton("Cancelar");
 
-        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(5, 2, 0, 10));
         panel.add(new JLabel("Nome:"));
         panel.add(tnome);
         panel.add(new JLabel("Calorias em 100g:"));
@@ -83,17 +85,17 @@ public class AlimentosForm extends JDialog {
         panel.add(salvarButton);
         panel.add(cancelarButton);
    
-        // Adicionando uma margem de 10 pixels nas bordas laterais e verticais panel.setBorder (BorderFactory.createEmptyBorder (10, 10, 10, 10));
+        
         salvarButton.addActionListener(new ActionListener() {
             @Override
-                public void actionPerformed (ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 if (validarCampos()) {
                     if (isEditMode) {
-                    } else {
                         atualizarAlimentos();
-                        adicionarAlimentos();
+                    } else {
+                        adicionarAlimentos(); 
                     }
-                    dispose();
+                    dispose(); 
                 }
             }
         });
@@ -109,11 +111,13 @@ public class AlimentosForm extends JDialog {
         if (alimentos != null) {
             tnome.setText(alimentos.getNome());
             tcalorias.setText(String.valueOf(alimentos.getCalorias()));
-            nota.setSelectedItem(alimentos.getSaciedade());
-            switch (alimentos.getSaciedade()) {
-                case 1 -> radio1.setSelected(true);
-                case 2 -> radio2.setSelected(true);
-                case 3 -> radio3.setSelected(true);
+            nota.setSelectedItem(String.valueOf(alimentos.getSabor()));
+            if (alimentos.getSaciedade().equalsIgnoreCase("Boa")) {
+                radio1.setSelected(true);
+            } else if (alimentos.getSaciedade().equalsIgnoreCase("Media")) {
+                radio2.setSelected(true);
+            } else if (alimentos.getSaciedade().equalsIgnoreCase("Ruim")) {
+                radio3.setSelected(true);
             }
         }
     }
@@ -122,7 +126,14 @@ public class AlimentosForm extends JDialog {
         if (tnome.getText().trim().isEmpty() || tcalorias.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                 this,"O nome e as calorias são obrigatórios.", "Erro", JOptionPane.ERROR_MESSAGE);
+                try {
+                    Integer.parseInt(tcalorias.getText().trim());
+                    Integer.parseInt(nota.getSelectedItem().toString());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Calorias e Nota devem ser números.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             return false;
+
         }
         return true;
     }
@@ -132,8 +143,8 @@ public class AlimentosForm extends JDialog {
             0,
             tnome.getText().trim(),
             Integer.parseInt(tcalorias.getText().trim()),
-            Integer.parseInt(nota.getSelectedItem().toString()), 
-            radio1.isSelected() ? 1 : (radio2.isSelected() ? 2 : 3) 
+            Integer.parseInt(nota.getSelectedItem().toString()),
+            radio1.isSelected() ? "Boa" : (radio2.isSelected() ? "Media" : "Ruim")
         );
     }
     
@@ -142,7 +153,13 @@ public class AlimentosForm extends JDialog {
             alimentos.setNome(tnome.getText().trim());
             alimentos.setCalorias(Integer.parseInt(tcalorias.getText().trim()));
             alimentos.setSabor(Integer.parseInt(nota.getSelectedItem().toString()));
-            alimentos.setSaciedade(radio1.isSelected() ? 1 : (radio2.isSelected() ? 2 : 3));
+            if (radio1.isSelected()) {
+                alimentos.setSaciedade("Boa");
+            } else if (radio2.isSelected()) {
+                alimentos.setSaciedade("Media");
+            } else if (radio3.isSelected()) {
+                alimentos.setSaciedade("Ruim");
+            }
         }
     }
 

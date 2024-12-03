@@ -10,7 +10,7 @@ import java.util.List;
 public class AlimentosRepository {
 
  
-    public void adicionarContato(Alimentos alimentos) {
+    public void adicionarAlimentos(Alimentos alimentos) {
        
         String sql = "INSERT INTO alimentos (Nome, Calorias, Sabor, Saciedade) VALUES (?, ?, ?, ?)";
 
@@ -21,7 +21,7 @@ public class AlimentosRepository {
             stmt.setString(1, alimentos.getNome());
             stmt.setInt(2, alimentos.getCalorias());
             stmt.setInt(3, alimentos.getSabor());
-            stmt.setInt(4, alimentos.getSaciedade());
+            stmt.setString(4, alimentos.getSaciedade());
 
         
             int linhasAfetadas = stmt.executeUpdate();
@@ -47,11 +47,11 @@ public class AlimentosRepository {
         
             while (rs.next()) {
                 Alimentos alimento = new Alimentos(
-                    rs.getInt("id"), 
+                    rs.getInt("alimentos_id"), 
                     rs.getString("nome"), 
                     rs.getInt("calorias"), 
                     rs.getInt("sabor"),
-                    rs.getInt("saciedade")
+                    rs.getString("saciedade")
                 );
                 alimentos.add(alimento); 
             }
@@ -65,26 +65,25 @@ public class AlimentosRepository {
         return alimentos; 
     }
 
-    public Alimentos obterAlimentoPorId(int id) {
-        String sql = "SELECT * FROM alimentos WHERE alimento_id = ?"; 
+    public Alimentos obterAlimentoPorId(int alimentos_id) {
+        String sql = "SELECT * FROM alimentos WHERE alimentos_id = ?"; 
         Alimentos alimento = null; 
 
         
         try (Connection conn = DbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             
-            stmt.setInt(1, id);
+            stmt.setInt(1, alimentos_id);
             ResultSet rs = stmt.executeQuery(); 
 
           
             if (rs.next()) {
                 alimento = new Alimentos(
-                    rs.getInt("alimento_id"), 
-                    rs.getString("nome"), 
+                    rs.getInt("alimentos_id"),
+                    rs.getString("nome"),
                     rs.getInt("calorias"),
-                    rs.getInt("saciedade"), 
-                    rs.getInt("sabor")
-
+                    rs.getInt("sabor"),
+                    rs.getString("saciedade")
                 );
             }
 
@@ -100,7 +99,7 @@ public class AlimentosRepository {
     
     public void atualizarAlimentos(Alimentos alimento) {
      
-        String sql = "UPDATE contatos SET nome = ?, calorias = ?, sabor = ?, saciedade = ?, WHERE alimento_id = ?";
+        String sql = "UPDATE alimentos SET nome = ?, calorias = ?, sabor = ?, saciedade = ? WHERE alimentos_id = ?";
 
     
         try (Connection conn = DbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -109,7 +108,7 @@ public class AlimentosRepository {
             stmt.setString(1, alimento.getNome());
             stmt.setInt(2, alimento.getCalorias());
             stmt.setInt(3, alimento.getSabor());
-            stmt.setInt(4, alimento.getSaciedade());
+            stmt.setString(4, alimento.getSaciedade());
             stmt.setInt(5, alimento.getAlimentosId()); 
 
            
@@ -129,7 +128,7 @@ public class AlimentosRepository {
 
     
     public void deletarAlimentos(int alimentos_id) {
-        String sql = "DELETE FROM alimentos WHERE alimento_id = ?"; 
+        String sql = "DELETE FROM alimentos WHERE alimentos_id = ?"; 
 
        
         try (Connection conn = DbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -152,8 +151,5 @@ public class AlimentosRepository {
     }
 
 
-    public void adicionarAlimento(Alimentos novoAlimentos) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'adicionarAlimento'");
-    }
+
 }

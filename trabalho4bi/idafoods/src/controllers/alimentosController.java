@@ -34,7 +34,7 @@ public class AlimentosController {
 
         tableView.add(toolBar, java.awt.BorderLayout.NORTH);
 
-        // Ações dos botões
+
         adicionarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
@@ -70,7 +70,7 @@ public class AlimentosController {
         form.setVisible(true);
         Alimentos novoAlimentos = form.getAlimentos();
         if (novoAlimentos != null) {
-            repository.adicionarAlimento(novoAlimentos);
+            repository.adicionarAlimentos(novoAlimentos);
             atualizarTabela();
         }
     }
