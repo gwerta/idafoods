@@ -1,18 +1,18 @@
 package views;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class Cadastro extends JFrame {
 
-    private JButton jButton_Todos, jButton_Leves, jButton_Salvar, jButton_Caloricos, jButton_Imagem;
+    private JButton jButton_Todos, jButton_Leves, jButton_Salvar, jButton_Caloricos;
     private JPanel buttonJPanel, radioJPanel, eastJPanel, westJPanel, centralJPanel, generalJPanel;
     private JRadioButton radio1, radio2, radio3;
     private ButtonGroup radioGroup;
-    private JLabel nome, saciedade, calorias, sabor, foto, alimento;
+    private JLabel nome, saciedade, calorias, sabor, alimento;
     private JTextField tnome, tcalorias;
     private JComboBox nota;
-    private String imagemUrl;
+  
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     
@@ -46,18 +46,17 @@ public class Cadastro extends JFrame {
         nome = new JLabel("Nome do alimento:");
         calorias = new JLabel("Calorias em 100g:");
         sabor = new JLabel("Nota do sabor:");
-        foto = new JLabel("Foto do alimento:");
-        alimento = new JLabel();
+    
 
         // Inicializando painel west e adicionando componentes
         westJPanel = new JPanel();
-        westJPanel.setLayout(new GridLayout(6, 1));
+        westJPanel.setLayout(new GridLayout(4, 1));
         westJPanel.add(nome);
         westJPanel.add(tnome);
         westJPanel.add(calorias);
         westJPanel.add(tcalorias);
-        westJPanel.add(sabor);
-        westJPanel.add(nota);
+        
+       
 
         // Inicializando painel de rádios
         radioJPanel = new JPanel();
@@ -80,15 +79,14 @@ public class Cadastro extends JFrame {
         eastJPanel.setLayout(new GridLayout(4, 1));
         eastJPanel.add(saciedade);
         eastJPanel.add(radioJPanel); 
-        eastJPanel.add(foto);
-        eastJPanel.add(alimento);
+        eastJPanel.add(sabor);
+        eastJPanel.add(nota);
 
         // Inicializando botões
         jButton_Todos = new JButton("Todos");
         jButton_Caloricos = new JButton("Caloricos");
         jButton_Leves = new JButton("Leves");
         jButton_Salvar = new JButton("Salvar");
-        jButton_Imagem = new JButton();
 
         // Inicializando painel de botões com todos os botões combinados
         buttonJPanel = new JPanel();

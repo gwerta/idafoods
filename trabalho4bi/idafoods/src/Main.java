@@ -6,6 +6,6 @@ public class Main {
         Cadastro teste = new Cadastro();
         
         teste.setVisible(true);
-        teste.setSize(400, 300);
+        teste.setSize(400, 240);
     }
 }
