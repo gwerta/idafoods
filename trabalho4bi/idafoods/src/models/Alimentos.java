@@ -28,7 +28,6 @@ public class Alimentos {
         return calorias;
     }
 
-    }
     public int getSabor(){
         return sabor;
     }
