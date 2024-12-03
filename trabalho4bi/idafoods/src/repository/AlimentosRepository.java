@@ -65,7 +65,7 @@ public class AlimentosRepository {
         return alimentos; 
     }
 
-    public Alimentos obterAliementoPorId(int id) {
+    public Alimentos obterAlimentoPorId(int id) {
         String sql = "SELECT * FROM alimentos WHERE alimento_id = ?"; 
         Alimentos alimento = null; 
 
@@ -100,7 +100,7 @@ public class AlimentosRepository {
     
     public void atualizarAlimentos(Alimentos alimento) {
      
-        String sql = "UPDATE contatos SET nome = ?, calorias = ?, sabor = ?, saciedade = ?, WHERE aliemento_id = ?";
+        String sql = "UPDATE contatos SET nome = ?, calorias = ?, sabor = ?, saciedade = ?, WHERE alimento_id = ?";
 
     
         try (Connection conn = DbConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -149,5 +149,11 @@ public class AlimentosRepository {
             System.out.println("Erro ao deletar alimento.");
             e.printStackTrace();
         }
+    }
+
+
+    public void adicionarAlimento(Alimentos novoAlimentos) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'adicionarAlimento'");
     }
 }

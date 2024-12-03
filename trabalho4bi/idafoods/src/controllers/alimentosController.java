@@ -70,7 +70,7 @@ public class AlimentosController {
         form.setVisible(true);
         Alimentos novoAlimentos = form.getAlimentos();
         if (novoAlimentos != null) {
-            repository.adicionarAlimentos(novoAlimentos);
+            repository.adicionarAlimento(novoAlimentos);
             atualizarTabela();
         }
     }
