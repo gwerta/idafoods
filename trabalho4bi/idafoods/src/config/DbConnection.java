@@ -1,16 +1,22 @@
 package config;
 
+//importação das bibliotecas
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
+
+    //Definindo as variáveis de conexões com o banco de dados
     private static final String URL =
     "jdbc:mysql://localhost:3306/idafoods_bd?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
     private static Connection connection = null;
+
+
 
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()){

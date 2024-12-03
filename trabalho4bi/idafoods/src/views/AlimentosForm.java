@@ -1,6 +1,10 @@
 package views;
 
+//importação das bibliotecas e outros arquivos
+
 import models.Alimentos;
+
+
 
 import javax.swing.*;
 import java.awt.*;
