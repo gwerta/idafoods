@@ -13,16 +13,21 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 
-
+//classe principal para controlar e iniciar o repository e a tableview
 public class AlimentosController {
 
     private AlimentosRepository repository;
     private AlimentosTableView tableView;
+
+
+    //método construtor
     public AlimentosController() {
         repository = new AlimentosRepository();
         tableView = new AlimentosTableView();
         inicializar();
     }
+
+    //classe que configura as funções principais da interface
     
     private void inicializar() {
         
@@ -64,11 +69,15 @@ public class AlimentosController {
         tableView.setVisible(true);
     }
 
+    //classe que atualiza a tabela depois de um salvamento e mostra todos os dados na tabela
+
     private void atualizarTabela() {
         List<Alimentos> alimentos = repository.obterTodosAlimentos();
         tableView.atualizarTabela (alimentos);
     }
 
+
+    //classe para adicionar um novo alimento
     private void adicionarAlimentos() {
         AlimentosForm form = new AlimentosForm(tableView, "Adicionar Alimentos");
         form.setVisible(true);
@@ -78,7 +87,7 @@ public class AlimentosController {
             atualizarTabela();
         }
     }
-    
+    //classe para editar um alimento
     private void editarAlimentos() {
         int selectedId = tableView.getSelectedAlimentosId();
         if (selectedId != -1) {
@@ -110,6 +119,8 @@ public class AlimentosController {
 
         }    
     }
+
+    //classe para deletar um alimento
     
     private void deletarAlimentos() {
         int selectedId = tableView.getSelectedAlimentosId();
@@ -131,6 +142,8 @@ public class AlimentosController {
             JOptionPane.WARNING_MESSAGE);
         }
     }
+
+    //classe para iniciar o contrutor vazio
         
     public void iniciar() {
         

@@ -1,5 +1,8 @@
     package views;
 
+
+
+    //importação das bibliotecas e outros arquivos
     import models.Alimentos;
 
     import javax.swing.*;
@@ -7,15 +10,21 @@
     import java.awt.*;
     import java.util.List;
 
+
+    //cria a interface da tableview
     public class AlimentosTableView extends JFrame { 
         private JTable table;
         private DefaultTableModel tableModel;
 
+
+        //construtor que configura a tableview
         public AlimentosTableView() {
             super("Gerenciamento de Alimentos");
             initializeComponents();
         }
 
+
+        //define os componentes da tableview
         private void initializeComponents() {
             String[] columnNames = {"ID", "Nome", "Calorias", "Sabor", "Saciedade"};
             tableModel = new DefaultTableModel (columnNames, 0);
@@ -33,6 +42,8 @@
             this.setLocationRelativeTo(null);
         }
 
+
+        //atualiza a tabela com todos os dados 
         public void atualizarTabela (List<Alimentos> Alimentos) {
             tableModel.setRowCount(0); // Limpa a tabela
             for (Alimentos alimentos: Alimentos) {
@@ -47,6 +58,8 @@
             }
         }
 
+
+        //permite a seleção de um alimento de acordo com o id dele atraves de um click na tabela
         public int getSelectedAlimentosId() {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {

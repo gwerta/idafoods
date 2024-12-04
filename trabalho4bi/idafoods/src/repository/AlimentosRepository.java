@@ -9,8 +9,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 public class AlimentosRepository {
 
+
+    //classe que adiciona um alimento no banco pela query do sql
  
     public void adicionarAlimentos(Alimentos alimentos) {
        
@@ -38,6 +43,8 @@ public class AlimentosRepository {
         }
     }
 
+
+    //classe que lista os elementos do banco pela query do sql
  
     public List<Alimentos> obterTodosAlimentos() {
         List<Alimentos> alimentos = new ArrayList<>(); 
@@ -66,6 +73,8 @@ public class AlimentosRepository {
 
         return alimentos; 
     }
+
+    //classe que seleciona um alimento do banco específico pelo id pela query do sql
 
     public Alimentos obterAlimentoPorId(int alimentos_id) {
         String sql = "SELECT * FROM alimentos WHERE alimentos_id = ?"; 
@@ -98,7 +107,7 @@ public class AlimentosRepository {
         return alimento; 
     }
 
-    
+    //classe que faz o update de um alimento no banco pela query do sql
     public void atualizarAlimentos(Alimentos alimento) {
      
         String sql = "UPDATE alimentos SET nome = ?, calorias = ?, sabor = ?, saciedade = ? WHERE alimentos_id = ?";
@@ -128,6 +137,8 @@ public class AlimentosRepository {
         }
     }
 
+
+    //classe que deleta um alimento no banco pela query do sql
     
     public void deletarAlimentos(int alimentos_id) {
         String sql = "DELETE FROM alimentos WHERE alimentos_id = ?"; 

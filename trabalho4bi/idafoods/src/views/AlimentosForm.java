@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
+//criação dos elementos do jframe
 public class AlimentosForm extends JDialog {
     private JPanel radioJPanel;
     private JTextField tnome, tcalorias;
@@ -25,11 +28,16 @@ public class AlimentosForm extends JDialog {
     private boolean isEditMode;
 
 
+    //classe que configura o form quando não está no modo de edição
+
+
     public AlimentosForm (Frame parent, String title) {
         super(parent, title, true);
         this.isEditMode = false;
         initializeComponents();
     }
+
+    //classe que configura o form quando está no modo de edição
 
     public AlimentosForm (Frame parent, String title, Alimentos alimentos) {
         super(parent, title, true);
@@ -38,6 +46,8 @@ public class AlimentosForm extends JDialog {
         initializeComponents();
         preencherCampos();
     }
+
+    //inicialização dos componentes do jframe
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private void initializeComponents() { 
@@ -77,6 +87,8 @@ public class AlimentosForm extends JDialog {
         salvarButton = new JButton("Salvar");
         cancelarButton = new JButton("Cancelar");
 
+        //criação do painel principal com os elementos
+
         JPanel panel = new JPanel(new GridLayout(5, 2, 0, 10));
         panel.add(new JLabel("Nome:"));
         panel.add(tnome);
@@ -90,6 +102,8 @@ public class AlimentosForm extends JDialog {
         panel.add(cancelarButton);
    
         
+
+        //configuração da ação dos botões dependendo se ele está no modo de edição ou não
         salvarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,6 +125,9 @@ public class AlimentosForm extends JDialog {
         this.setLocationRelativeTo(getParent());
     }
 
+
+    //ele preenche os campos com os dados do alimento na tabela
+
     private void preencherCampos () {
         if (alimentos != null) {
             tnome.setText(alimentos.getNome());
@@ -126,6 +143,8 @@ public class AlimentosForm extends JDialog {
         }
     }
     
+
+    //validação para dar um aviso nos campos
     private boolean validarCampos() {
         if (tnome.getText().trim().isEmpty() || tcalorias.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
@@ -142,6 +161,8 @@ public class AlimentosForm extends JDialog {
         return true;
     }
 
+    //cria um novo alimento na tabela
+
     private void adicionarAlimentos() {
         alimentos = new Alimentos(
             0,
@@ -151,7 +172,7 @@ public class AlimentosForm extends JDialog {
             radio1.isSelected() ? "Boa" : (radio2.isSelected() ? "Media" : "Ruim")
         );
     }
-    
+    //atualiza o alimento na tabela
     private void atualizarAlimentos() {
         if (alimentos != null) {
             alimentos.setNome(tnome.getText().trim());
@@ -166,7 +187,7 @@ public class AlimentosForm extends JDialog {
             }
         }
     }
-
+//permite o retorno de todos os dados do alimento
     public Alimentos getAlimentos() {
         return alimentos;
     }

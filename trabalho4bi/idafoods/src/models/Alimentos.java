@@ -1,11 +1,14 @@
 package models;
 
+//classe principal dos alimentos
 public class Alimentos {
     private int alimentos_id;
     private String nome;
     private int calorias;
     private int sabor;
     private String saciedade;
+
+    //método construtores
 
     public Alimentos(){
     }
@@ -18,6 +21,8 @@ public class Alimentos {
         this.saciedade = saciedade;
     }
 
+
+    //métodos gets
     public int getAlimentosId(){
         return alimentos_id;
     }
@@ -34,7 +39,7 @@ public class Alimentos {
     public String getSaciedade(){
         return saciedade;
     }
-
+//métodos sets
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -47,7 +52,7 @@ public class Alimentos {
     public void setSaciedade(String saciedade){
         this.saciedade = saciedade;
     }
-
+//mostrar os dados
     @Override
     public String toString(){
         return "Alimentos [alimentos_id=" + alimentos_id + ",nome=" + nome + ", calorias=" + calorias + ",sabor=" + sabor + ",saciedade=" + saciedade + "]";

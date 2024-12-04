@@ -17,7 +17,7 @@ public class DbConnection {
     private static Connection connection = null;
 
 
-
+//método para conectar ao banco de dados
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()){
             try{
@@ -32,7 +32,7 @@ public class DbConnection {
         }
         return connection;
     }
-
+//método para desconectar do banco de dados
     public static void disconnect(Connection connection){
         try{
             connection.close();
